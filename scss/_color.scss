@@ -1,0 +1,65 @@
+@use "palette";
+@use "sass:color";
+
+@function getColorMap($base) {
+    @return (
+        base: $base,
+        100: color.scale($base, $lightness: -40%),
+        200: color.scale($base, $lightness: -30%),
+        300: color.scale($base, $lightness: -20%),
+        400: color.scale($base, $lightness: -10%),
+        600: color.scale($base, $lightness: 10%),
+        700: color.scale($base, $lightness: 20%),
+        800: color.scale($base, $lightness: 30%),
+        900: color.scale($base, $lightness: 40%)
+    );
+}
+
+$primary-colors: getColorMap(palette.$primary);
+$secondary-colors: getColorMap(palette.$secondary);
+$tertiary-colors: getColorMap(palette.$tertiary);
+$paper-colors: getColorMap(palette.$paper);
+
+$black-text: #000;
+$white-text: #fff;
+$complementary-text: #20988B;
+
+@function getColor($type: "primary", $scale: "base") {
+    @if "secondary" {
+        @return map-get($secondary-colors, $scale);
+    } @else if "tertiary" {
+        @return map-get($tertiary-colors, $scale);
+    } @else if "paper" {
+        @return map-get($paper-colors, $scale);
+    } @else {
+        @return map-get($primary-colors, $scale);
+    }
+}
+
+@each $key, $value in $primary-colors {
+    .primary-#{$key} {
+        background: $value;
+        color: $white-text;
+    }
+}
+
+@each $key, $value in $secondary-colors {
+    .secondary-#{$key} {
+        background: $value;
+        color: getColor("tertiary", 100);
+    }
+}
+
+@each $key, $value in $tertiary-colors {
+    .tertiary-#{$key} {
+        background: $value;
+        color: $black-text;
+    }
+}
+
+@each $key, $value in $paper-colors {
+    .paper-#{$key} {
+        background: $value;
+        color: $black-text;
+    }
+}

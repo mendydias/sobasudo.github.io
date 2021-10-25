@@ -1,0 +1,17 @@
+@use "text";
+@use "color";
+@use "components";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    
+    li {
+        display: list-item;
+        list-style: circle;
+    }
+}

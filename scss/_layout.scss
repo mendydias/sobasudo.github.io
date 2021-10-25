@@ -1,0 +1,36 @@
+$xs: "only screen and (max-device-width: 599px)";
+$s: "only screen and (min-device-width: 600px) and (max-device-width: 904px)";
+$m: "only screen and (min-device-width: 905px) and (max-device-width: 1239px)";
+$l: "only screen and (min-device-width: 1240px) and (max-device-width: 1439px)";
+$xl: "only screen and (min-device-width: 1440px) and (max-device-width: 904px)";
+
+
+@mixin phone {
+    @media #{$xs} {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media #{$s} {
+        @content;
+    }
+}
+
+@mixin landscape {
+    @media #{$m} {
+        @content;
+    }
+}
+
+@mixin laptop {
+    @media #{$l} {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media #{$xl} {
+        @content;
+    }
+}

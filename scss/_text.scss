@@ -1,0 +1,74 @@
+@use "layout";
+
+$paragaph-spacing: 0.4rem;
+$line-height: 1.5rem;
+$subheading-lead: 0;
+$subheading-drop: 1rem;
+
+html {
+    font-size: 24px;
+
+    @include layout.phone {
+        font-size: 42px;
+    }
+
+    @include layout.tablet {
+        font-size: 38px;
+    }
+}
+
+//module font sizes
+$module-fs: (
+    base: 1rem,
+    caption: 0.6rem,
+    3: 1.1rem,
+    2: 1.4rem,
+    1: 2rem 
+);
+
+//element font sizes
+$element-fs: (
+    base: 1em,
+    caption: 0.5em,
+    3: 0.9em,
+    2: 1.5em,
+    1: 2.2em,
+);
+
+$font-style-headings: 'Montserrat', sans-serif;;
+$font-style-subheadings: 'Martel', serif;
+$font-style-text: 'Hind Siliguri', sans-serif;
+
+@each $key, $value in $module-fs {
+    .mdl-txt-#{$key} {
+        font-size: $value;
+    }
+}
+
+@each $key, $value in $element-fs {
+    .elem-txt-#{$key} {
+        font-size: $value;
+        @if $key == "base" {
+            font-family: $font-style-text;
+        } @else if $key == 2 or $key == 3{
+            font-family: $font-style-subheadings;
+        } @else {
+            font-family: $font-style-headings;
+        }
+    }
+}
+
+.txt {
+    margin: 0 0 $paragaph-spacing 0;
+    line-height: $line-height;
+}
+
+h2 {
+    margin: $subheading-lead 0 $subheading-drop 0;
+}
+
+.img-label {
+    color: white;
+    font-weight: bolder;
+}
+
